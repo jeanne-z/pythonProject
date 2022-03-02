@@ -15,11 +15,13 @@ for j in range(height):
         else:
             index_map[(j + 1) * width - i - 1] = (i, j)
 
-
-    # wspolrzedne dla indexu
+# wspolrzedne dla indexu
 print(index_map[123][0], index_map[123, 1])
 
 from PIL import Image
 
 img = Image.fromarray(array)
 #img.save('testrgb.png')
+
+
+
