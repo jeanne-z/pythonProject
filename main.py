@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-def jpk_image_array(width=32, height=64):
+def jpk_image_array(width=21, height=64):
     index_map = {}
     for j in range(height):
         for i in range(width):
@@ -30,8 +30,11 @@ def read_data(file_name):
 
     #remove outlieares
     data = data.drop(data[(data['indentation'] > 100)].index)
+    data = data.drop(data[(data['indentation'] < 13)].index)
+
     #get max value
     max_indentation_value = data['indentation'].max()
+
 
     #normalize
     data['indentation'] = data['indentation'] * 255/max_indentation_value
@@ -39,7 +42,7 @@ def read_data(file_name):
     return data
 
 
-def indentation_map(filename, width=32, height=64):
+def indentation_map(filename, width=21, height=64):
 
     data = read_data(filename)
     index_map = jpk_image_array(width, height)
@@ -64,5 +67,5 @@ def indentation_map(filename, width=32, height=64):
 
 
 if __name__ == '__main__':
-    indentation_map(r'C:\Users\joann\Joanna_data\Bacteria\joined-testfile.dat')
+    indentation_map(r'C:\Users\joann\Joanna_data\Bacteria\2020.02.06-negat mnm.dat')
 
